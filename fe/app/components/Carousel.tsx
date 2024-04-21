@@ -1,10 +1,7 @@
-import { ReactElement } from 'react';
+import { ReactElement, useState, useEffect, useRef } from 'react';
 // import Swiper JS
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
-
-// Import Swiper styles
-import 'swiper/css';
+import { Swiper, SwiperSlide } from 'swiper/react'; // Correct type import for Swiper
+import SwiperClass from 'swiper'; // Import Swiper class for proper typing
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -14,29 +11,50 @@ import 'swiper/css/scrollbar';
 import Image from 'next/image';
 
 interface CarouselProps {
-  images: string[];
-}
+    images: string[];
+  }
+  
+  export default function Carousel({ images }: CarouselProps) {
+    const swiperRef = useRef<SwiperClass | null>(null); // Correct type for Swiper instance
 
-export default function Carousel({ images }: CarouselProps): ReactElement {
-  return (
-    <Swiper
-      modules={[Navigation, Pagination, Scrollbar, A11y]}
-      slidesPerView={1}
-      spaceBetween={10} // Space between slides
-      loop={true} // Infinite loop
-      pagination={{ clickable: true }} // Clickable dots
-      navigation
-    //   scrollbar={{ draggable: true }}
-      onSwiper={(swiper) => console.log(swiper)}
-      onSlideChange={() => console.log('slide change')}
-    >
-      {images.map((image, index) => (
-        <SwiperSlide key={index}>
-          <div className="flex justify-center"> {/* Center the slide content */}
-            <Image src={image} alt={`Slide ${index}`} layout="fit" width={350} height={475} />
-          </div>
-        </SwiperSlide>
-      ))}
-    </Swiper>
-  );
-}
+    const handleScreenClick = (e: MouseEvent) => {
+        const threshold = window.innerWidth / 2; // Midpoint of the screen
+        if (e.clientX < threshold) {
+        swiperRef.current?.slidePrev(); // Swipe to the left if clicked on the left side
+        } else {
+        swiperRef.current?.slideNext(); // Swipe to the right if clicked on the right side
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener('click', handleScreenClick);
+
+        return () => {
+        window.removeEventListener('click', handleScreenClick);
+        };
+    }, []);
+  
+    return (
+        <Swiper
+            onSwiper={(swiper) => (swiperRef.current = swiper)} // Save Swiper instance
+            slidesPerView={1}
+            loop={true}
+            navigation={false}
+            spaceBetween={10}
+        >
+            {images.map((image, index) => (
+            <SwiperSlide key={index}>
+                <div className="flex justify-center w-full h-full"> {/* Ensure full container */}
+                    <Image
+                        src={image}
+                        alt={`Slide ${index}`}
+                        layout="contain" // Use 'contain' to keep the image within bounds
+                        width={350}
+                        height={475}
+                    />
+                </div>
+            </SwiperSlide>
+            ))}
+        </Swiper>
+    );
+  }

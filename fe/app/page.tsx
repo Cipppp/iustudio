@@ -2,6 +2,8 @@ import Image from "next/image";
 import logo from '../public/assets/logo-studio.png';
 import backgroundImage from '../public/assets/poza-fatada-1.jpg';
 import Link from 'next/link';
+import '../public/lib/fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function Home() {
   return (
