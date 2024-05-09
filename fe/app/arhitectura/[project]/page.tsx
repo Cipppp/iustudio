@@ -1,83 +1,44 @@
-'use client'
-import { useEffect } from 'react';
+'use client';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Layout from '../../components/Layout';
 import Carousel from '../../components/Carousel';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import ProjectComponent from '@/app/components/ProjectComponent';
 
-const projectNames = ['casa-floreasca-niu', 'birou-iustudio']; // Example project names
-const projectImages: { [key: string]: string[] } = {
-  'casa-floreasca-niu': ['/assets/ar_1.jpeg', '/assets/ar_2.jpeg'],
-  'birou-iustudio': ['/assets/arc_1.jpeg', '/assets/arc_2.jpeg'],
+const projectDescriptions = {
+    'Casa-CC22': (
+        <>
+            <div className="font-bold text-lg">Casa CC22</div>
+            <div>Bucharest, Romania</div>
+            <div>2022</div>
+        </>
+    ),
+    'CASA-NIU': (
+        <>
+            <div className="font-bold text-lg">Casa NIU</div>
+            <div>Bucharest, Romania</div>
+            <div></div>
+        </>
+    ),
+    'CASA-PRM22': (
+        <>
+            <div className="font-bold text-lg">Casa PRM22</div>
+            <div>Bucharest, Romania</div>
+            <div>2022</div>
+        </>
+    ),
 };
 
 export default function ProjectPage({
-  params,
+    params,
 }: {
-  params: { project: string };
+    params: { project: string };
 }) {
-    const router = useRouter();
-    const { project } = params;
-    const images = projectImages[project] || [];
-    const handleScroll = (e: WheelEvent) => {
-      const currentIndex = projectNames.indexOf(project);
-
-      if (e.deltaY > 0) { // Scroll down
-        const nextProject = projectNames[currentIndex + 1];
-        if (nextProject) {
-          router.push(`/arhitectura/${nextProject}`); // Navigate to the next project
-        }
-      } else if (e.deltaY < 0) { // Scroll up
-        const previousProject = projectNames[currentIndex - 1];
-        if (previousProject) {
-          router.push(`/arhitectura/${previousProject}`); // Navigate to the previous project
-        }
-      }
-    };
-
-    const handleScreenClick = (e: MouseEvent) => {
-      const verticalThreshold = window.innerHeight / 2; // Midpoint of the screen for vertical navigation
-  
-      if (e.clientY > verticalThreshold) {
-        // If click is below the midpoint, navigate to the next project
-        const currentIndex = projectNames.indexOf(project);
-        const nextProject = projectNames[currentIndex + 1];
-        if (nextProject) {
-          router.push(`/arhitectura/${nextProject}`);
-        }
-      } else {
-        // If click is above the midpoint, navigate to the previous project
-        const currentIndex = projectNames.indexOf(project);
-        const previousProject = projectNames[currentIndex - 1];
-        if (previousProject) {
-          router.push(`/arhitectura/${previousProject}`);
-        }
-      }
-    };
-
-
-  useEffect(() => {
-
-      window.addEventListener('click', handleScreenClick); // Add click event listener for vertical navigation
-      window.addEventListener('wheel', handleScroll); // Add scroll event listener
-
-      return () => {
-        window.removeEventListener('wheel', handleScroll); // Cleanup event listener
-        window.removeEventListener('click', handleScreenClick); // Cleanup event listener
-      };
-    }, [project, router]);
-
-  return (
-    <Layout>
-      <div className="w-screen h-screen flex flex-col justify-center items-center"> {/* Centered layout */}
-        {images.length > 0 ? (
-          <div className="flex-shrink-0 w-1/2">  {/* Carousel container */}
-            <Carousel images={images} /> {/* Horizontal carousel */}
-          </div>
-        ) : (
-          <div className="text-gray-500 text-lg">Project not found.</div> 
-        )}
-      </div>
-    </Layout>
-  );
+    return (
+        <ProjectComponent
+            baseFolder="Case"
+            projectDescriptions={projectDescriptions}
+            project={params.project}
+        />
+    );
 }

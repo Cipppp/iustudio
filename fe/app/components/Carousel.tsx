@@ -7,6 +7,9 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
+import { motion } from 'framer-motion';
+import "swiper/css/effect-fade";
+import { EffectFade } from 'swiper/modules';
 
 import Image from 'next/image';
 
@@ -36,21 +39,32 @@ interface CarouselProps {
   
     return (
         <Swiper
+            modules={[EffectFade]}
+            // effect="fade"
             onSwiper={(swiper) => (swiperRef.current = swiper)} // Save Swiper instance
             slidesPerView={1}
             loop={true}
             navigation={false}
             spaceBetween={10}
+            speed={1200}
+
+            className='w-10rem'
         >
             {images.map((image, index) => (
             <SwiperSlide key={index}>
-                <div className="flex justify-center w-full h-full"> {/* Ensure full container */}
+                <div
+                    style={{
+                    width: "48rem",
+                    height: "38rem",
+                    position: "relative",
+                    }}
+                >
                     <Image
-                        src={image}
-                        alt={`Slide ${index}`}
-                        layout="contain" // Use 'contain' to keep the image within bounds
-                        width={350}
-                        height={475}
+                    src={image}
+                    alt=""
+                    layout="fill"
+                    objectFit="cover"
+                    priority={true}
                     />
                 </div>
             </SwiperSlide>
