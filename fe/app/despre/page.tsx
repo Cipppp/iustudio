@@ -11,7 +11,7 @@ export default function About() {
                         {/* You can replace `placeholder.jpg` with your actual image file */}
                         <img src="https://placehold.co/450x650" alt="About Me" className="rounded-lg" />
                     </div>
-                    <div className="flex-grow">
+                    <div className="flex-grow text-black">
                         <h1 className="text-2xl font-bold mb-4">About Me</h1>
                         <p className="text-lg">
                             I am a passionate architect based in Barcelona, dedicated to transforming spaces into meaningful and functional environments. With a focus on sustainable design, I aim to create structures that enhance the quality of life for occupants and blend harmoniously with their surroundings.

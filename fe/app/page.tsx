@@ -18,7 +18,7 @@ export default function Home() {
     }, 1000);
   };
 
-  const stopPropagation = (event) => {
+  const stopPropagation = (event: any) => {
     event.stopPropagation();
   };
 

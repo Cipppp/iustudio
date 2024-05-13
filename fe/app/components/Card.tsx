@@ -1,11 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-interface CardProps {
-    imageSrc: string;
-    name: string;
-    basePath: string; // Additional prop for customizing the link base path
-}
 
 function generateSlug(name: string): string {
     return name
@@ -14,8 +9,15 @@ function generateSlug(name: string): string {
         .replace(/^-+|-+$/g, ''); // Remove leading and trailing hyphens
 }
 
-export default function Card({ imageSrc, name, basePath }: CardProps) {
-    const slug = generateSlug(name);
+interface CardProps {
+    imageSrc: string;
+    displayName: string; // For displaying
+    originalName: string; // For linking
+    basePath: string;
+}
+
+export default function Card({ imageSrc, displayName, originalName, basePath }: CardProps) {
+    const slug = generateSlug(originalName); // Use original name for the URL
 
     return (
         <Link href={`/${basePath}/${slug}`}>
@@ -23,13 +25,13 @@ export default function Card({ imageSrc, name, basePath }: CardProps) {
                 <div className="flex-shrink-0 h-[90%] relative">
                     <Image
                         src={imageSrc}
-                        alt={name}
+                        alt={displayName}
                         layout="fill"
                         objectFit="cover"
                     />
                 </div>
                 <div className="p-4 text-center flex-shrink-0 h-[10%]">
-                    <h3 className="text-lg text-black">{name}</h3>
+                    <h3 className="text-lg text-black">{displayName}</h3>
                 </div>
             </div>
         </Link>

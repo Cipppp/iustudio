@@ -27,6 +27,7 @@
 body {
   color: rgb(var(--foreground-rgb));
   background: #FFFFFA; 
+  overflow-x: hidden; /* Prevent horizontal scrollbar due to fixed sidebar */
 
 }
 

@@ -1,8 +1,8 @@
-'use client';
 import React, { useEffect, useState } from 'react';
 import Card from './Card';
 import Layout from './Layout';
 import { motion, AnimatePresence } from 'framer-motion';
+import styles from './ProjectGallery.module.scss';
 
 interface ImageData {
     url: string;
@@ -15,33 +15,36 @@ interface ProjectGalleryProps {
     basePath: string;
 }
 
+const formatName = (folderName: string) => {
+    const parts = folderName.split(/[-_]/);
+    return parts.slice(0, 2).join(' ');
+};
+
 const ProjectGallery: React.FC<ProjectGalleryProps> = ({
     folderNames,
     baseFolder,
     basePath,
 }) => {
-    const [images, setImages] = useState<ImageData[]>([]);
+    const [images, setImages] = useState<{ url: string, displayName: string, originalName: string }[]>([]);
 
     useEffect(() => {
         const fetchImages = async () => {
-            const imageData: ImageData[] = await Promise.all(
+            const imageData = await Promise.all(
                 folderNames.map(async (folder) => {
-                    const encodedFolderName = encodeURIComponent(
-                        `${baseFolder}/${folder}/`
-                    );
-                    const response = await fetch(
-                        `/api/s3-list?folderPrefix=${encodedFolderName}&imageName=Principala.jpg`
-                    );
+                    const encodedFolderName = encodeURIComponent(`${baseFolder}/${folder}/`);
+                    const response = await fetch(`/api/s3-list?folderPrefix=${encodedFolderName}&imageName=Principala.jpg`);
                     const data: ImageData[] = await response.json();
-                    return data[0] || {}; // Assuming only one image per folder, default to empty object if none found
+                    return {
+                        url: data[0]?.url || '',
+                        displayName: formatName(folder),
+                        originalName: folder
+                    };
                 })
             );
-
             setImages(imageData);
         };
-
         fetchImages();
-    }, [folderNames, baseFolder]); // Add dependencies to useEffect
+    }, [folderNames, baseFolder]);
 
     return (
         <Layout>
@@ -49,8 +52,8 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1 }}
-                className="flex justify-center">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-[6rem] pr-10 pb-10 pt-[8rem]">
+                className={styles.galleryContainer}>
+                <div className={styles.galleryGrid}>
                     <AnimatePresence>
                         {images.map((image, index) => (
                             <motion.div
@@ -60,7 +63,8 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({
                                 transition={{ duration: 1 }}>
                                 <Card
                                     imageSrc={image.url}
-                                    name={image.key.split('/')[1]} // Use the folder name or modify as needed
+                                    displayName={image.displayName}
+                                    originalName={image.originalName}
                                     basePath={basePath}
                                 />
                             </motion.div>

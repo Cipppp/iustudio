@@ -1,8 +1,4 @@
 'use client';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import Layout from '../../components/Layout';
-import Carousel from '../../components/Carousel';
 import ProjectComponent from '@/app/components/ProjectComponent';
 
 const projectDescriptions = {

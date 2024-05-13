@@ -1,0 +1,32 @@
+.swiperContainer {
+    height: 100%; // Ensure the Swiper container takes up full height available
+    display: flex;
+    align-items: center; // This centers the slides vertically
+    justify-content: center;
+  
+    .swiper-wrapper {
+      align-items: center; // Ensures all slides are vertically centered
+    }
+  }
+  
+  .carouselContainer {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center; // Centers the image within the slide
+  }
+  
+  .carouselImage {
+    max-width: 700px;
+    max-height: 1000px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block; // Ensures the image is treated as a block for centering
+  
+    @media (max-width: 768px) {
+      max-width: 90%;
+      max-height: 90%;
+    }
+  }
+  
