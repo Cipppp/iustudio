@@ -25,16 +25,12 @@ const projectDescriptions = {
     ),
 };
 
-export default function ProjectPage({
-    params,
-}: {
-    params: { project: string };
-}) {
+export default function ProjectPage() {
     return (
         <ProjectComponent
-            baseFolder="Magazin_incaltaminte"
+            baseFolder="Case"
             projectDescriptions={projectDescriptions}
-            project={params.project}
+            project="Casa-NIU"
         />
     );
 }

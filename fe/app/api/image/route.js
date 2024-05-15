@@ -10,6 +10,8 @@ const s3Client = new S3Client({
     },
 });
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request) {
     const searchParams = request.nextUrl.searchParams;
     const imageUrl = searchParams.get("imageUrl");
@@ -19,7 +21,7 @@ export async function GET(request) {
         const key = url.pathname.substring(1); // Assuming the URL includes the leading '/'
         const optimizedImageKey = `optimized/${key}`;
 
-        // Check if the optimized image already exists
+        // Check  if the optimized image already exists
         try {
             await s3Client.send(new HeadObjectCommand({
                 Bucket: process.env.AWS_S3_BUCKET_NAME,

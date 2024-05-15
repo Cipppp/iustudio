@@ -1,8 +1,8 @@
+'use client'
 import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import Layout from './Layout';
 import Carousel from './Carousel';
-import Head from 'next/head';  // Import Head for managing the document head
+import Head from 'next/head';
 
 interface ProjectProps {
     baseFolder: string;
@@ -19,23 +19,32 @@ export default function ProjectComponent({
     projectDescriptions,
     project,
 }: ProjectProps) {
-    const router = useRouter();
+
     const projectDescription = projectDescriptions[project] || (
         <div>No description available.</div>
     );
 
     const [images, setImages] = useState<string[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         const fetchOptimizedImages = async () => {
-            const encodedProjectName = encodeURIComponent(project);
-            const response = await fetch(`/api/s3-list?folderPrefix=${baseFolder}/${encodedProjectName}/`);
-            if (response.ok) {
-                const imageData: ImageData[] = await response.json();
-                const optimizedImages = await Promise.all(imageData.map(img => fetchOptimizedImage(img.url)));
-                setImages(optimizedImages);
-            } else {
-                console.error('Failed to fetch images');
+            try {
+                const encodedProjectName = encodeURIComponent(project);
+                const response = await fetch(`/api/s3-list?folderPrefix=${baseFolder}/${encodedProjectName}/`);
+                if (response.ok) {
+                    const imageData: ImageData[] = await response.json();
+                    const optimizedImages = await Promise.all(imageData.map(img => fetchOptimizedImage(img.url)));
+                    setImages(optimizedImages);
+                } else {
+                    throw new Error('Failed to fetch images');
+                }
+            } catch (error) {
+                console.error(error);
+                setError('Failed to fetch images');
+            } finally {
+                setLoading(false);
             }
         };
 
@@ -52,21 +61,24 @@ export default function ProjectComponent({
 
         if (project) fetchOptimizedImages();
     }, [project, baseFolder]);
-    
-
 
     return (
         <Layout>
-
+            <Head>
+                <title>{projectDescriptions[project]?.props?.children[0]?.props?.children || 'Project'}</title>
+                <meta name="description" content={`Details about the project ${project}`} />
+            </Head>
             <div className="w-screen h-screen flex flex-col justify-center items-center overflow-hidden">
-                {images.length > 0 ? (
+                {loading ? (
+                    <div className="text-gray-500 text-lg">Loading...</div>
+                ) : error ? (
+                    <div className="text-red-500 text-lg">{error}</div>
+                ) : images.length > 0 ? (
                     <div className="flex-shrink-0 w-full">
                         <Carousel images={images} />
                     </div>
                 ) : (
-                    <div className="text-gray-500 text-lg">
-                        Project not found.
-                    </div>
+                    <div className="text-gray-500 text-lg">Project not found.</div>
                 )}
 
                 <div className="absolute bottom-80 right-100 ml-[40rem] text-left text-black z-10">

@@ -20,7 +20,7 @@ export default function Card({ imageSrc, displayName, originalName, basePath }: 
     const slug = generateSlug(originalName); // Use original name for the URL
 
     return (
-        <Link href={`/${basePath}/${slug}`}>
+        <Link href={`/${basePath}/projects/${slug}`}>
             <div className="w-[24rem] h-[30rem] bg-white overflow-hidden flex flex-col justify-between">
                 <div className="flex-shrink-0 h-[90%] relative">
                     <Image
