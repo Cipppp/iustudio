@@ -1,3 +1,4 @@
+// app/page.tsx
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -40,6 +41,7 @@ export default function Home() {
           <Link href="/arhitectura-de-interior"><span className="text-white text-sm md:text-md lg:text-lg font-medium hover:text-gray-300" onClick={stopPropagation}>Arhitectura de interior</span></Link>
           <Link href="/design-de-produs"><span className="text-white text-sm md:text-md lg:text-lg font-medium hover:text-gray-300" onClick={stopPropagation}>Design de produs</span></Link>
         </nav>
+
       </header>
       <div className="flex justify-center items-center h-full md:hidden">
         <button 
