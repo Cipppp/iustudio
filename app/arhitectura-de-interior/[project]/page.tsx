@@ -2,27 +2,21 @@
 import ProjectComponent from '@/app/components/ProjectComponent';
 
 const projectDescriptions = {
-    'Casa-CC22': (
-        <>
-            <div className="font-bold text-lg">Casa CC22</div>
-            <div>Bucharest, Romania</div>
-            <div>2022</div>
-        </>
-    ),
-    'CASA-NIU': (
-        <>
-            <div className="font-bold text-lg">Casa NIU</div>
-            <div>Bucharest, Romania</div>
-            <div></div>
-        </>
-    ),
-    'CASA-PRM22': (
-        <>
-            <div className="font-bold text-lg">Casa PRM22</div>
-            <div>Bucharest, Romania</div>
-            <div>2022</div>
-        </>
-    ),
+    'Birou-BGA_an-2019': {
+        name: "Birou BGA",
+        location: "București, România",
+        year: "2019"
+    },
+    'Birou-IU_an-2019_2020': {
+        name: "Birou IU",
+        location: "București, România",
+        year: "2019- 2020"
+    },
+    'Magazin-ROCA_an-2020': {
+        name: "Magazin ROCA",
+        location: "București, România",
+        year: "2022"
+    },
 };
 
 export default function ProjectPage({
