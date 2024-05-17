@@ -6,7 +6,7 @@ import styles from './ProjectComponent.module.scss'; // Import SCSS module
 
 interface ProjectProps {
     baseFolder: string;
-    projectDescriptions: { [key: string]: { name: string, location: string, year: string } };
+    projectDescriptions: { [key: string]: JSX.Element };
     project: string;
 }
 
@@ -20,11 +20,9 @@ export default function ProjectComponent({
     project,
 }: ProjectProps) {
     const router = useRouter();
-    const projectDescription = projectDescriptions[project] || {
-        name: "No description available",
-        location: "",
-        year: ""
-    };
+    const projectDescription = projectDescriptions[project] || (
+        <div>No description available.</div>
+    );
 
     const [images, setImages] = useState<string[]>([]);
 
@@ -58,10 +56,10 @@ export default function ProjectComponent({
                 )}
                 <div className={styles.textContainer}>
                     <div className={styles.leftText}>
-                        <p>{projectDescription.name}<br />{projectDescription.location}</p>
+                        <p>JN&QUOI Beach Club<br />Comporta, Portugal</p>
                     </div>
                     <div className={styles.rightText}>
-                        <p>{projectDescription.year}</p>
+                        <p>2022—2023</p>
                     </div>
                 </div>
             </div>

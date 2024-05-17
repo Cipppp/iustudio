@@ -19,22 +19,12 @@
 
   @media (min-width: 1080px) {
     position: absolute;
-    bottom: 5rem;
-    right: 12rem;
+    bottom: 80px;
+    right: 100px;
     flex-direction: column;
     text-align: left;
     align-items: flex-end;
   }
-
-  @media (min-width: 1800px) {
-    position: absolute;
-    bottom: 8rem;
-    right: 20rem;
-    flex-direction: column;
-    text-align: left;
-    align-items: flex-end;
-  }
-
 }
 
 .leftText, .rightText {
