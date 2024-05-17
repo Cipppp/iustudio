@@ -7,7 +7,7 @@ export default function MenuWrapper() {
 
     useEffect(() => {
         const handleResize = () => {
-            setIsMobile(window.innerWidth < 800);
+            setIsMobile(window.innerWidth < 980);
         };
 
         window.addEventListener('resize', handleResize);

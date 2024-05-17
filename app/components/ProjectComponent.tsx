@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Layout from './Layout';
 import Carousel from './Carousel';
-import Head from 'next/head';  // Import Head for managing the document head
+import styles from './ProjectComponent.module.scss'; // Import SCSS module
 
 interface ProjectProps {
     baseFolder: string;
@@ -39,19 +39,14 @@ export default function ProjectComponent({
             }
         };
 
-
-
         if (project) fetchOptimizedImages();
     }, [project, baseFolder]);
-    
-
 
     return (
         <Layout>
-
             <div className="w-screen h-screen flex flex-col justify-center items-center overflow-hidden">
                 {images.length > 0 ? (
-                    <div className="flex-shrink-0 w-full">
+                    <div className="flex-shrink-0 w-full h-full relative">
                         <Carousel images={images} />
                     </div>
                 ) : (
@@ -59,9 +54,13 @@ export default function ProjectComponent({
                         Project not found.
                     </div>
                 )}
-
-                <div className="absolute bottom-80 right-100 ml-[40rem] text-left text-black z-10">
-                    {projectDescription}
+                <div className={styles.textContainer}>
+                    <div className={styles.leftText}>
+                        <p>JN&QUOI Beach Club<br />Comporta, Portugal</p>
+                    </div>
+                    <div className={styles.rightText}>
+                        <p>2022—2023</p>
+                    </div>
                 </div>
             </div>
         </Layout>

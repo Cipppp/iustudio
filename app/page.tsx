@@ -24,7 +24,7 @@ export default function Home() {
 
   return (
     <motion.main
-      className="main-background"
+      className="main-background relative w-full h-screen bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: `url(${backgroundImage.src})` }}
       initial={isTransitioning ? { opacity: 1 } : {}}
       animate={isTransitioning ? { opacity: 0 } : {}}
@@ -41,12 +41,12 @@ export default function Home() {
           <Link href="/design-de-produs"><span className="text-white text-sm md:text-md lg:text-lg font-medium hover:text-gray-300" onClick={stopPropagation}>Design de produs</span></Link>
         </nav>
       </header>
-      <div className="flex justify-center items-center h-screen md:hidden">
+      <div className="flex justify-center items-center h-full md:hidden">
         <button 
-          className="mobile-button"
+          className="mobile-button bg-white text-black p-4 rounded-lg text-sm"
           onClick={handleImageClick}
         >
-          Mai multe
+          Vezi proiectele
         </button>
       </div>
     </motion.main>

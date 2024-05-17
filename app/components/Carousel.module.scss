@@ -1,36 +1,68 @@
+// Carousel.module.scss
 .swiperContainer {
-    height: 100%; // Ensure the Swiper container takes up full height available
-    display: flex;
-    align-items: center; // This centers the slides vertically
-    justify-content: center;
-  
-    .swiper-wrapper {
-      align-items: center; // Ensures all slides are vertically centered
-    }
+  height: 100%; // Ensure the Swiper container takes up full height available
+  display: flex;
+  align-items: center; // This centers the slides vertically
+  justify-content: center;
 
+  .swiper-wrapper {
+    align-items: center; // Ensures all slides are vertically centered
   }
-  
-  .carouselContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
+}
+
+.carouselContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.slideContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.carouselImage {
+  max-width: 700px;
+  max-height: 1000px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+
+  @media (max-width: 640px) {
+    max-width: 90%; // Adjust the size for smaller devices
+    max-height: 70%;
   }
-  
-  .carouselImage {
-    max-width: 700px;
-    max-height: 1000px;
-    width: auto;
-    height: auto;
-    object-fit: contain;
+
+  @media (min-width: 641px) and (max-width: 1024px) {
+    max-width: 80%; // Adjust the size for medium devices
+    max-height: 80%;
   }
-  
-  .rightCursor {
-    cursor: url('../../public/assets/right_arrow.svg'), auto; // Make sure this path points to your right arrow SVG icon
+
+  @media (min-width: 1025px) and (max-width: 1280px) {
+    max-width: 70%; // Adjust the size for large devices
+    max-height: 80%;
   }
-  
-  .leftCursor {
-    cursor: url('../../public/assets/left_arrow.svg'), auto; // Make sure this path points to your right arrow SVG icon
+
+  @media (min-width: 1281px) and (max-width: 1536px) {
+    max-width: 60%; // Adjust the size for extra-large devices
+    max-height: 80%;
   }
-  
+
+  @media (min-width: 1537px) {
+    max-width: 50%; // Adjust the size for extra extra-large devices
+    max-height: 80%;
+  }
+}
+
+.rightCursor {
+  cursor: url('../../public/assets/right_arrow.svg'), auto; // Make sure this path points to your right arrow SVG icon
+}
+
+.leftCursor {
+  cursor: url('../../public/assets/left_arrow.svg'), auto; // Make sure this path points to your left arrow SVG icon
+}

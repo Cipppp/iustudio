@@ -45,7 +45,6 @@ export default function Carousel({ images }: CarouselProps) {
 
   return (
     <div className={`${styles.carouselContainer} ${cursorSide === 'right' ? styles.rightCursor : ''} ${cursorSide === 'left' ? styles.leftCursor : ''}`}>
-     
       <Swiper
         onSwiper={(swiper) => (swiperRef.current = swiper)}
         slidesPerView={1}
@@ -58,7 +57,7 @@ export default function Carousel({ images }: CarouselProps) {
       >
         {images.map((image, index) => (
           <SwiperSlide key={index}>
-            <div className={styles.carouselContainer}>
+            <div className={styles.slideContainer}>
               <img
                 src={image}
                 alt=""
@@ -69,7 +68,6 @@ export default function Carousel({ images }: CarouselProps) {
           </SwiperSlide>
         ))}
       </Swiper>
-      
     </div>
   );
 }

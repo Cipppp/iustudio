@@ -1,47 +1,89 @@
+// ProjectGallery.module.scss
 .galleryContainer {
     display: flex;
     justify-content: center;
     opacity: 0;
     transition: opacity 1s;
-    margin-top: 7rem;
+    margin-top: 3rem;
     width: 100%; // Ensure the container takes full width
-
+  
     &.animate {
-        opacity: 1;
+      opacity: 1;
     }
-
-}
-
-.galleryGrid {
+  
+    @media (min-width: 640px) { // Small devices
+      margin-top: 3rem;
+    }
+  }
+  
+  .galleryGrid {
     display: grid;
     width: 100%; // Ensure the grid takes full width
     grid-template-columns: repeat(1, 1fr);
     gap: 6px;
-    padding: 1rem 1rem 2rem 1rem; // Consolidate padding values
-    overflow-y: auto; // Allow vertical scrolling
-    
-
+    padding: 0rem 1rem 2rem 1rem; // Consolidate padding values
+  
     @media (min-width: 640px) { // Small devices
-        grid-template-columns: repeat(1, 1fr);
-        gap: 8px;
-        padding: 4px 0 4px 6px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem;
+      padding: 4px 0 4px 6px;
+    }
+  
+    @media (min-width: 820px) { // Medium devices
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
     }
 
-    @media (min-width: 800px) { // Medium devices
-        grid-template-columns: repeat(1, 1fr);
-        gap: 4rem;
-        padding: 8px 0 8px 8px;
+    @media (min-width: 980px) {
+      margin-left: 16rem;
+      gap: 1.5rem
     }
-
-    @media (min-width: 1250px) { // Large devices
-        grid-template-columns: repeat(2, 1fr);
-        gap: 5rem;
-        padding: 10px 0 10px 10px;
+  
+    @media (min-width: 1350px) { // Large devices
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+      padding: 10px 0 10px 10px;
     }
-
+  
     @media (min-width: 1780px) { // Extra large devices
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8rem;
-        padding: 12px 0 12px 12px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8rem;
+      padding: 12px 0 12px 12px;
     }
-}
+
+    @media (min-width: 1980px) { // Extra large devices
+      margin-right: 6rem;
+    }
+  }
+  
+
+  .galleryItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: white;
+    overflow: hidden;
+    height: 30rem;
+    width: 100%;
+    margin-top: 2rem;
+  
+    @media (min-width: 640px) { // Small devices
+      width: 20rem;
+      height: 25rem;
+      margin-left: 1.4rem;
+      margin-right: 1.4rem;
+    }
+  
+    .galleryImage {
+      flex-shrink: 0;
+      height: 90%;
+      position: relative;
+    }
+  
+    .galleryText {
+      padding: 1rem;
+      text-align: center;
+      flex-shrink: 0;
+      height: 10%;
+    }
+  }

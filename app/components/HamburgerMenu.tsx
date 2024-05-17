@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
@@ -18,7 +18,7 @@ function normalizeString(str: string) {
 }
 
 export default function HamburgerMenu() {
-    const [isOpen, setIsOpen] = useState(false); // Start closed on mobile
+    const [isOpen, setIsOpen] = useState(false);
     const pathname = usePathname();
     const toggleSidebar = () => setIsOpen(!isOpen);
 
@@ -28,33 +28,41 @@ export default function HamburgerMenu() {
                 <FontAwesomeIcon icon={faBars} className={styles.textIcon} />
             </button>
             
-            {isOpen && (
-                <motion.nav
-                    className={styles.menu}
-                    initial={{ x: -250 }}
-                    animate={{ x: 0 }}
-                    transition={{ duration: 0.5 }}
-                >
-                    <Link href="/">
-                        <div className={styles.linkText}>IU Studio</div>
-                    </Link>
-                    {mainLinks.map((link, index) => (
-                        <Link key={index} href={`/${normalizeString(link).toLowerCase().replace(/\s+/g, '-')}`}>
-                            <div className={styles.linkText}>{link}</div>
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.nav
+                        className={styles.menu}
+                        initial={{ x: '100%' }}
+                        animate={{ x: 0 }}
+                        exit={{ x: '100%' }}
+                        transition={{ duration: 0.7 }}
+                    >
+                        <Link href="/">
+                            <div className={styles.linkText}>IU Studio</div>
                         </Link>
-                    ))}
-                    {mediumLinks.map((link, index) => (
-                        <Link key={index} href={`/${normalizeString(link).toLowerCase().replace(/\s+/g, '-')}`}>
-                            <div className={styles.linkText}>{link}</div>
-                        </Link>
-                    ))}
-                    {socialLinks.map((link, index) => (
-                        <Link key={index} href={link.url}>
-                            <div className={styles.linkText}>{link.name}</div>
-                        </Link>
-                    ))}
-                </motion.nav>
-            )}
+                        <div className='mt-[3rem]'></div>
+                        {mainLinks.map((link, index) => (
+                            <Link key={index} href={`/${normalizeString(link).toLowerCase().replace(/\s+/g, '-')}`}>
+                                <div className={styles.linkText}>{link}</div>
+                            </Link>
+                        ))}
+                                                <div className='mt-[3rem]'></div>
+
+                        {mediumLinks.map((link, index) => (
+                            <Link key={index} href={`/${normalizeString(link).toLowerCase().replace(/\s+/g, '-')}`}>
+                                <div className={styles.linkText}>{link}</div>
+                            </Link>
+                        ))}
+                                                <div className='mt-[3rem]'></div>
+
+                        {socialLinks.map((link, index) => (
+                            <Link key={index} href={link.url}>
+                                <div className={styles.linkText}>{link.name}</div>
+                            </Link>
+                        ))}
+                    </motion.nav>
+                )}
+            </AnimatePresence>
         </>
     );
 }

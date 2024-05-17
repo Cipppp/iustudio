@@ -33,6 +33,10 @@ body {
   overflow: scroll !important;
 }
 
+body > div > div {
+  overflow: scroll !important;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
