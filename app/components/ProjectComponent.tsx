@@ -30,25 +30,16 @@ export default function ProjectComponent({
         const fetchOptimizedImages = async () => {
             const encodedProjectName = encodeURIComponent(project);
             const response = await fetch(`/api/s3-list?folderPrefix=${baseFolder}/${encodedProjectName}/`);
+            
+            // Display the images if the response is successful
             if (response.ok) {
-                const imageData: ImageData[] = await response.json();
-                const optimizedImages = await Promise.all(imageData.map(img => fetchOptimizedImage(img.url)));
-                setImages(optimizedImages);
-            } else {
-                console.error('Failed to fetch images');
+                const data: ImageData[] = await response.json();
+                const imageUrls = data.map((image) => image.url);
+                setImages(imageUrls);
             }
         };
 
-        const fetchOptimizedImage = async (imageUrl: string): Promise<string> => {
-            const response = await fetch(`/api/image?imageUrl=${encodeURIComponent(imageUrl)}`);
-            if (response.ok) {
-                const data = await response.json();
-                return data.url;
-            } else {
-                console.error('Failed to fetch optimized image');
-                return imageUrl;  // Fallback to original image if optimization fails
-            }
-        };
+
 
         if (project) fetchOptimizedImages();
     }, [project, baseFolder]);

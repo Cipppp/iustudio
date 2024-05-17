@@ -7,13 +7,15 @@
     .swiper-wrapper {
       align-items: center; // Ensures all slides are vertically centered
     }
+
   }
   
   .carouselContainer {
-    height: 100%;
     display: flex;
     justify-content: center;
-    align-items: center; // Centers the image within the slide
+    align-items: center;
+    height: 100%;
+    width: 100%;
   }
   
   .carouselImage {
@@ -22,11 +24,13 @@
     width: auto;
     height: auto;
     object-fit: contain;
-    display: block; // Ensures the image is treated as a block for centering
+  }
   
-    @media (max-width: 768px) {
-      max-width: 90%;
-      max-height: 90%;
-    }
+  .rightCursor {
+    cursor: url('../../public/assets/right_arrow.svg'), auto; // Make sure this path points to your right arrow SVG icon
+  }
+  
+  .leftCursor {
+    cursor: url('../../public/assets/left_arrow.svg'), auto; // Make sure this path points to your right arrow SVG icon
   }
   

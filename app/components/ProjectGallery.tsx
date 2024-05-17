@@ -20,15 +20,11 @@ const formatName = (folderName: string) => {
     return parts.slice(0, 2).join(' ');
 };
 
-const ProjectGallery: React.FC<ProjectGalleryProps> = ({
-    folderNames,
-    baseFolder,
-    basePath,
-}) => {
+const ProjectGallery: React.FC<ProjectGalleryProps> = ({ folderNames, baseFolder, basePath }) => {
     const [images, setImages] = useState<{ url: string, displayName: string, originalName: string }[]>([]);
 
-    useEffect(() => {
-        const fetchImages = async () => {
+    const fetchImages = async () => {
+        try {
             const imageData = await Promise.all(
                 folderNames.map(async (folder) => {
                     const encodedFolderName = encodeURIComponent(`${baseFolder}/${folder}/`);
@@ -42,7 +38,12 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({
                 })
             );
             setImages(imageData);
-        };
+        } catch (error) {
+            console.error('Error fetching images:', error);
+        }
+    };
+
+    useEffect(() => {
         fetchImages();
     }, [folderNames, baseFolder]);
 

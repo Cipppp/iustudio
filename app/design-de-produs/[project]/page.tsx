@@ -32,7 +32,7 @@ export default function ProjectPage({
 }) {
     return (
         <ProjectComponent
-            baseFolder="Easychair"
+            baseFolder="optimized/Easychair"
             projectDescriptions={projectDescriptions}
             project={params.project}
         />

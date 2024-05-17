@@ -27,12 +27,31 @@
 body {
   color: rgb(var(--foreground-rgb));
   background: #FFFFFA; 
-  overflow-x: hidden; /* Prevent horizontal scrollbar due to fixed sidebar */
-
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: scroll !important;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.main-background {
+  @apply relative min-h-screen bg-cover bg-center cursor-pointer;
+
+  @media (max-width: 768px) {
+    background-position: top;
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    background-position: center;
+  }
+}
+
+
+.mobile-button {
+  @apply bg-white text-black py-2 px-4 rounded-md hover:bg-gray-200 transition-all duration-300;
 }

@@ -21,7 +21,7 @@ export default function Card({ imageSrc, displayName, originalName, basePath }: 
 
     return (
         <Link href={`/${basePath}/${slug}`}>
-            <div className="w-[24rem] h-[30rem] bg-white overflow-hidden flex flex-col justify-between">
+            <div className="w-full h-[30rem] sm:w-[24rem] sm:h-[30rem] bg-white overflow-hidden flex flex-col justify-between">
                 <div className="flex-shrink-0 h-[90%] relative">
                     <Image
                         src={imageSrc}

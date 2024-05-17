@@ -10,7 +10,7 @@ export default function InteriorArhitecture() {
                 'Birou-IU_an-2019_2020',
                 'Magazin-ROCA_an-2020',
             ]}
-            baseFolder="Magazin_incaltaminte"
+            baseFolder="optimized/Magazin_incaltaminte"
             basePath="arhitectura-de-interior" // Pass a different basePath for interior architecture
         />
     );

@@ -6,7 +6,7 @@ export default function Arhitecture() {
     return (
         <ProjectGallery
             folderNames={['Casa-CC22', 'Casa-NIU', 'Casa-PRM22']}
-            baseFolder="Case"
+            baseFolder="optimized/Case"
             basePath="arhitectura" // Pass the basePath for architectural projects
         />
     );

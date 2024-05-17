@@ -4,7 +4,7 @@ import Layout from '../components/Layout'; // Assuming you have a Layout compone
 export default function Contact() {
     return (
         <Layout>
-            <div className="pl-[4rem] mx-auto py-8">
+            <div className="sm:pl-[4rem] md:pl-[14rem] mx-auto py-8">
                 <div className="pt-[4rem] text-gray-700">
                     <p>Gheorghe Banciulescu 3 020174 Bucuresti, Romania</p>
                 </div>

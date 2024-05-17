@@ -10,7 +10,7 @@ export default function InteriorArhitecture() {
                 'Scara-NIU_an-2018-2019',
                 'Scaun-Cu20_an-2020',
             ]}
-            baseFolder="Easychair"
+            baseFolder="optimized/Easychair"
             basePath="design-de-produs" // Pass a different basePath for interior architecture
         />
     );

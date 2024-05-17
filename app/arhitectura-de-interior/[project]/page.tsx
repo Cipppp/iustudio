@@ -32,7 +32,7 @@ export default function ProjectPage({
 }) {
     return (
         <ProjectComponent
-            baseFolder="Magazin_incaltaminte"
+            baseFolder="optimized/Magazin_incaltaminte"
             projectDescriptions={projectDescriptions}
             project={params.project}
         />

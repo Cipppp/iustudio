@@ -32,7 +32,7 @@ export default function ProjectPage({
 }) {
     return (
         <ProjectComponent
-            baseFolder="Case"
+            baseFolder="optimized/Case"
             projectDescriptions={projectDescriptions}
             project={params.project}
         />
