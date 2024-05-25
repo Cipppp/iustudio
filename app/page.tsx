@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import logo from '../public/assets/logo-studio.png';
+import logo from '../public/assets/logo_iu_white.png';
 import backgroundImage from '../public/assets/poza-fatada-1.jpg';
 
 export default function Home() {
@@ -34,12 +34,13 @@ export default function Home() {
     >
       <header className="absolute top-0 left-0 right-0 flex justify-between items-center p-4 md:p-6 lg:p-8">
         <div className="pl-4 md:pl-6 lg:pl-8">
-          <Image src={logo} alt="Logo" width={100} height={100} />
+          <Image src={logo} alt="Logo" width={250} height={250} />
         </div>
         <nav className="hidden md:flex space-x-4 md:space-x-6 lg:space-x-8 pr-4 md:pr-6 lg:pr-8 xl:pr-16 2xl:pr-24">
           <Link href="/arhitectura"><span className="text-white text-sm md:text-md lg:text-lg font-medium hover:text-gray-300" onClick={stopPropagation}>Arhitectura</span></Link>
           <Link href="/arhitectura-de-interior"><span className="text-white text-sm md:text-md lg:text-lg font-medium hover:text-gray-300" onClick={stopPropagation}>Arhitectura de interior</span></Link>
           <Link href="/design-de-produs"><span className="text-white text-sm md:text-md lg:text-lg font-medium hover:text-gray-300" onClick={stopPropagation}>Design de produs</span></Link>
+          <Link href="/contact"><span className="text-white text-sm md:text-md lg:text-lg font-medium hover:text-gray-300" onClick={stopPropagation}>Contact</span></Link>
         </nav>
 
       </header>

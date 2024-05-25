@@ -52,7 +52,7 @@ export default function Carousel({ images }: CarouselProps) {
         navigation={false}
         spaceBetween={0}
         speed={1200}
-        centeredSlides={true}
+        // centeredSlides={true}
         className={styles.swiperContainer} // Apply custom styles to the Swiper container
       >
         {images.map((image, index) => (
@@ -64,6 +64,7 @@ export default function Carousel({ images }: CarouselProps) {
                 className={styles.carouselImage}
                 loading="lazy"
               />
+
             </div>
           </SwiperSlide>
         ))}

@@ -1,17 +1,32 @@
-.textContainer {
+.project-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
-  
+  height: 100%;
+
+  @media (max-width: 1079px) {
+    flex-direction: column;
+  }
+
+  @media (min-width: 1080px) {
+    flex-direction: row;
+  }
+}
+
+.textContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start; // Align text to the left side
+  margin-left: 10px; // Space between the carousel and text
   z-index: 10;
   color: #000;
 
   @media (max-width: 1079px) {
-    position: static;
     position: absolute;
     bottom: 2rem;
-    flex-direction: column;
     align-items: center;
     text-align: center;
     padding: 1rem 0;
@@ -19,29 +34,59 @@
 
   @media (min-width: 1080px) {
     position: absolute;
-    bottom: 80px;
-    right: 100px;
-    flex-direction: column;
+    bottom: 5%;  // Use percentage for more responsive positioning
+    right: 5%;   // Adjust according to the size and layout
     text-align: left;
-    align-items: flex-end;
+    align-items: flex-start;
+    padding: 0.4rem 0;
+  }
+
+  @media (min-width: 1680px) {
+    bottom: 23%;
+    right: 10%;
+    font-size: .8rem;
+  }
+
+  @media (min-width: 1920px) {
+    bottom: 27%;  // Gradual increase for higher resolutions
+    right: 12%;
+    font-size: .9rem;  // Slightly increase the font size
+  }
+
+  @media (min-width: 2560px) {
+    bottom: 30%;  // Intermediate step before 4K
+    right: 11%;
+    font-size: 1.6rem;
+  }
+
+  @media (min-width: 3840px) {  // 4K resolution adjustments
+    bottom: 37%;  // Increase the padding for larger screens
+    right: 20%;
+    font-size: 1.8rem;  // Increase the font size for better visibility on large screens
   }
 }
 
 .leftText, .rightText {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.7); // Semi-transparent background for better readability
-  padding: 10px;
   border-radius: 5px;
   margin-bottom: 10px;
-  
+  text-align: left;  // Consistently align text to the left
+
   @media (max-width: 1079px) {
     text-align: center;
     margin-top: 1rem;
   }
 
   @media (min-width: 1080px) {
-    margin-bottom: 0.5rem;
+    margin-top: -1rem;
   }
+}
+
+.rightText {
+  padding-top: 0.6rem;
+}
+
+.projectName {
+  font-size: 1.4rem;  // Adjust as needed
+  font-weight: bold;
+  margin-bottom: 0.5rem;
 }

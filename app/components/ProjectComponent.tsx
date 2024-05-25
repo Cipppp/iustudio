@@ -4,9 +4,16 @@ import Layout from './Layout';
 import Carousel from './Carousel';
 import styles from './ProjectComponent.module.scss'; // Import SCSS module
 
+interface ProjectDescription {
+    name: string;
+    location?: string;  // The location is now optional
+    year: string;
+    mentions?: string[]; // Assuming you've already added this as optional
+}
+
 interface ProjectProps {
     baseFolder: string;
-    projectDescriptions: { [key: string]: { name: string, location: string, year: string } };
+    projectDescriptions: { [key: string]: ProjectDescription };
     project: string;
 }
 
@@ -22,9 +29,9 @@ export default function ProjectComponent({
     const router = useRouter();
     const projectDescription = projectDescriptions[project] || {
         name: "No description available",
-        location: "",
         year: ""
     };
+
 
     const [images, setImages] = useState<string[]>([]);
 
@@ -56,13 +63,21 @@ export default function ProjectComponent({
                         Project not found.
                     </div>
                 )}
-                <div className={styles.textContainer}>
+              <div className={styles.textContainer}>
                     <div className={styles.leftText}>
-                        <p>{projectDescription.name}<br />{projectDescription.location}</p>
+                        <p className={styles.projectName}>{projectDescription.name}</p>
+                        {projectDescription.location && <p>{projectDescription.location}</p>}
                     </div>
                     <div className={styles.rightText}>
                         <p>{projectDescription.year}</p>
                     </div>
+                    {projectDescription.mentions && (
+                        <div className={styles.mentionsText}>
+                            {projectDescription.mentions.map((mention, index) => (
+                                <p key={index}>{mention}</p>
+                            ))}
+                        </div>
+                    )}
                 </div>
             </div>
         </Layout>

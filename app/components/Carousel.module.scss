@@ -66,3 +66,15 @@
 .leftCursor {
   cursor: url('../../public/assets/left_arrow.svg'), auto; // Make sure this path points to your left arrow SVG icon
 }
+
+
+.imageText {
+  position: absolute;
+  bottom: 10px; // Adjust based on your layout needs
+  right: 10px; // Adjust based on your layout needs
+  color: #fff; // Set text color
+  padding: 5px 10px;
+  background: rgba(0, 0, 0, 0.5); // Semi-transparent background for readability
+  border-radius: 4px;
+  font-size: 14px; // Adjust based on your design
+}

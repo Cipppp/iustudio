@@ -14,7 +14,7 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors: {
-        "bg-main-color": "#FFFFFA"
+        "bg-main-color": "#fff"
       },
       screens: {
         'xss': '240px',   // Extra small devices

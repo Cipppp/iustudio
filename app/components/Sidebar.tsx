@@ -9,7 +9,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 
 const mainLinks = [
-    'Arhitectura',
+    'Arhitectură',
     'Arhitectură de interior',
     'Design de produs',
 ];

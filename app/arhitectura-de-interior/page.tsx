@@ -7,11 +7,11 @@ export default function InteriorArhitecture() {
         <ProjectGallery
             folderNames={[
                 'Casa-CC22', 
-                'Casa-NIU', 
                 'Casa-PRM22',
+                'Casa-NIU', 
+                'Magazin-ROCA_an-2020',
                 'Birou-BGA_an-2019',
-                'Birou-IU_an-2019_2020',
-                'Magazin-ROCA_an-2020'
+                'Birou-IU_an-2019_2020'
             ]}
             baseFolder="optimized/Magazin_incaltaminte"
             basePath="arhitectura-de-interior" // Pass a different basePath for interior architecture

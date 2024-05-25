@@ -5,7 +5,7 @@ import ProjectGallery from '../components/ProjectGallery';
 export default function Arhitecture() {
     return (
         <ProjectGallery
-            folderNames={["ICABU-M", "Casa-NIU19"]}
+            folderNames={["Casa-NIU19", "ICABU-M"]}
             baseFolder="optimized/Case"
             basePath="arhitectura" // Pass the basePath for architectural projects
         />
