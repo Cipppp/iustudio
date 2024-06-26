@@ -9,7 +9,7 @@ import styles from './Sidebar.module.scss';
 const mainLinks = ['Arhitectura', 'Arhitectură de interior', 'Design de produs'];
 const mediumLinks = ['Despre', 'Contact'];
 const socialLinks = [
-    { name: 'Instagram', url: 'https://www.instagram.com/iu.studio/' },
+    { name: 'Instagram', url: 'https://www.instagram.com/iu_studio_interiors/' },
     { name: 'Facebook', url: 'https://www.facebook.com/IUstudio.irinaursu/' },
 ];
 
