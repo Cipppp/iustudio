@@ -16,7 +16,7 @@ const mainLinks = [
 // const mediumLinks = ['Publicații', 'Despre', 'Contact'];
 const mediumLinks = ['Despre', 'Contact'];
 const socialLinks = [
-    { name: 'Instagram', url: 'https://www.instagram.com/iu.studio/' },
+    { name: 'Instagram', url: 'https://www.instagram.com/iu_studio_interiors/' },
     { name: 'Facebook', url: 'https://www.facebook.com/IUstudio.irinaursu/' },
 ];
 
